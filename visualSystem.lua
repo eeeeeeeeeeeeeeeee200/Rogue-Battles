@@ -34,6 +34,7 @@ local PantsFolder = AppearanceTemplates:WaitForChild("Pants")
 local HelmetFolder = AppearanceTemplates:WaitForChild("Helmets")
 local WeaponsFolder = AppearanceTemplates:WaitForChild("Weapons")
 local AccessoriesFolder = AppearanceTemplates:WaitForChild("Accessories")
+local ExtraDecalsFolder = AppearanceTemplates:WaitForChild("ExtraDecals")
 
 -- i hate math
 local function calculateBezier(p0, p1, p2, t)
@@ -62,6 +63,11 @@ local HairColorMapping = {
 
 local weaponFlavors = { -- for classes that have weapons that can talk i guess? just so its not a one time thing and we can reuse maybe
 	["Barbarian"] = {Text = {"CUT THEM TO PIECES", "DODGE THIS", "RAHHHHHHHHHHHHHH", "I WILL CUT YOU DOWN", "What are we doing after this?", "HAHAHA! FIGHT BACK!"}, Rng = 15},
+}
+
+local extraDecalsTable = { -- for both classes and races, maybe make it specify body part later
+	["Barbarian"] = {"BarbarianTatoo1", "BarbarianTatoo2"}
+	["Pazaron"] = {"Wings"} -- not yet added in the folder
 }
 
 local damageTextTemplate = templates.DamageText
@@ -407,6 +413,11 @@ function visualSystem.ApplyAppearance(character, slotData)
 				end
 			end
 		end
+	end
+
+	-- extra decals
+	if extraDecalsTable[slotData.T2Class] or extraDecalsTable[slotData.T3Class] or extraDecalsTable[slotData.Race] then
+	-- gtg finsih later
 	end
 	-- gemling gems 
 	if slotData.Gems and slotData.Race == "Gemling" then
