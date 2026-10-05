@@ -66,7 +66,7 @@ local weaponFlavors = { -- for classes that have weapons that can talk i guess? 
 }
 
 local extraDecalsTable = { -- for both classes and races, maybe make it specify body part later
-	["Barbarian"] = {"BarbarianTatoo1", "BarbarianTatoo2"}
+	["Barbarian"] = {"BarbarianTatoo1", "BarbarianTatoo2"},
 	["Pazaron"] = {"Wings"} -- not yet added in the folder
 }
 
@@ -703,6 +703,28 @@ function visualSystem.clearAllEffects(participantInstance)
 			if fx then fx:Destroy() end
 		end
 		visualSystem.activeEffects[participantInstance] = nil
+	end
+end
+
+function visualSystem.shadowDodgeAnim(dodgerInstance)
+	local partsToTween = {}
+	local tweenInfo = TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	for i, v in pairs(dodgerInstance:GetChildren()) do
+		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "Head" then
+			local spawnedPart = v:Clone()
+			spawnedPart.Color = color3.fromRGB(91, 0, 68)
+			spawnedPart.Material = Enum.Material.Neon
+			spawnedPart.CanCollide = false
+			spawnedPart.Anchored = true
+			spawnedPart.Parent = dodgerInstance
+			table.insert(partsToTween, v)
+		end
+	end
+	for i, v in pairs(partsToTween) do
+			local tweenGoal = {Size = v.Size + 0.5}
+		local tween = TweenService.Create(v, tweenInfo, tweenGoal)
+		tween:Play()
+		Debris.AddItem(v, 0.65)
 	end
 end
 
