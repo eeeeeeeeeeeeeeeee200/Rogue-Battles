@@ -712,19 +712,24 @@ function visualSystem.shadowDodgeAnim(dodgerInstance)
 	local partsToTween = {}
 	local tweenInfo = TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	for i, v in pairs(dodgerInstance:GetChildren()) do
-		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "Head" then
-			local spawnedPart = v:Clone()
-			spawnedPart.Color = Color3.fromRGB(91, 0, 68)
-			spawnedPart.Size = v.Size + Vector3.new(0.05,0.05,0.05)
+		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "FakeHead" and v.Name ~= "Head" then
+			for i = 1, 4 do
+				task.wait(0.01)
+			local spawnedPart = Instance.new("Part")
+			spawnedPart.Color = Color3.fromRGB(30,0,20)
+			spawnedPart.Size = v.Size + Vector3.new(1,1,1)
 			spawnedPart.Material = Enum.Material.Neon
 			spawnedPart.CanCollide = false
 			spawnedPart.Anchored = true
+			spawnedPart.CFrame = v.CFrame
+			spawnedPart.Position = spawnedPart.Position + Vector3.new(math.random(1,20) / 10, math.random(1,20) / 10, math.random(1,20) / 10)
 			spawnedPart.Parent = workspace
 			table.insert(partsToTween, spawnedPart)
+			end
 		end
 	end
 	for i, v in ipairs(partsToTween) do
-		local tweenGoal = {Size = v.Size + Vector3.new(0.5,0.5,0.5), Transparency = 1}
+		local tweenGoal = {Size = Vector3.new(0.1,0.1,0.1), Transparency = 1}
 		local tween = TweenService:Create(v, tweenInfo, tweenGoal)
 		tween:Play()
 		Debris:AddItem(v, 0.65)

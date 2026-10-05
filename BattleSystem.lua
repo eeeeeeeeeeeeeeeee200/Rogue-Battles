@@ -713,13 +713,17 @@ function battleSystem.damageInstance(defender, damage, attackerInstance)
 
 	local defenderData = require(defenderInstance.InstanceData)
 	if defenderData.Health <= 0 then return end
-
+	if damage >= 1 then
     local shadowDodge = defenderData.ShadowDodge or 0
-    local shadowDodgeRng = shadowDodge * 10 -- leaving lowering the ammount the more you have for later i hate math
-    if math.random(1,100) <= shadowDodgeRng and damage > 1 then
+
+	local negMulti = ((shadowDodge + 1) / 2) * 0.07
+
+	  local shadowDodgeRng = (shadowDodge * 10) * negMulti
+    if math.random(1,100) <= shadowDodgeRng then
         damage = 0
         visualSystem.shadowDodgeAnim(defenderInstance)
     end
+end
     visualSystem.showDamageText(defenderInstance.PrimaryPart, damage)
 	defenderData.Health = math.clamp(defenderData.Health - damage, 0, defenderData.MaxHealth)
 
