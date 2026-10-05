@@ -716,13 +716,13 @@ function battleSystem.damageInstance(defender, damage, attackerInstance)
 
     local shadowDodge = defenderData.ShadowDodge or 0
     local shadowDodgeRng = shadowDodge * 10 -- leaving lowering the ammount the more you have for later i hate math
-    if math.random(1,100) >= shadowDodgeRng and damage > 1 then
+    if math.random(1,100) <= shadowDodgeRng and damage > 1 then
         damage = 0
-        visualSystem.showDamageText(defenderInstance.PrimaryPart, damage)
         visualSystem.shadowDodgeAnim(defenderInstance)
-    else
-	defenderData.Health = math.clamp(defenderData.Health - damage, 0, defenderData.MaxHealth)
     end
+    visualSystem.showDamageText(defenderInstance.PrimaryPart, damage)
+	defenderData.Health = math.clamp(defenderData.Health - damage, 0, defenderData.MaxHealth)
+
 	battleSystem.triggerPaEfOfType(finalDefender, "onDeath") -- passives themselves check if you have 0 hp before trying anything, so we can run this anyways i think
 
 

@@ -235,6 +235,8 @@ function visualSystem.ApplyAppearance(character, slotData)
 		if item:IsA("Accessory") or item:IsA("Clothing") then item:Destroy() end
 	end
 	if head and head:FindFirstChild("face") then head.face:Destroy() end
+	
+	humanoid.RequiresNeck = false
 
 	local sourceRigFolder = SkinToneFolder:FindFirstChild(slotData.Race) or SkinToneFolder
 	local sourceRig = sourceRigFolder and sourceRigFolder:FindFirstChild(slotData.Skin)
@@ -417,7 +419,7 @@ function visualSystem.ApplyAppearance(character, slotData)
 
 	-- extra decals
 	if extraDecalsTable[slotData.T2Class] or extraDecalsTable[slotData.T3Class] or extraDecalsTable[slotData.Race] then
-	-- gtg finsih later
+		-- gtg finsih later
 	end
 	-- gemling gems 
 	if slotData.Gems and slotData.Race == "Gemling" then
@@ -712,18 +714,17 @@ function visualSystem.shadowDodgeAnim(dodgerInstance)
 	for i, v in pairs(dodgerInstance:GetChildren()) do
 		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "Head" then
 			local spawnedPart = v:Clone()
-			v.Name = "TweenPart"
 			spawnedPart.Color = Color3.fromRGB(91, 0, 68)
 			spawnedPart.Size = v.Size + Vector3.new(0.05,0.05,0.05)
 			spawnedPart.Material = Enum.Material.Neon
 			spawnedPart.CanCollide = false
 			spawnedPart.Anchored = true
 			spawnedPart.Parent = workspace
-			table.insert(partsToTween, v)
+			table.insert(partsToTween, spawnedPart)
 		end
 	end
 	for i, v in ipairs(partsToTween) do
-			local tweenGoal = {Size = v.Size + Vector3.new(0.5,0.5,0.5), Transparency = 1}
+		local tweenGoal = {Size = v.Size + Vector3.new(0.5,0.5,0.5), Transparency = 1}
 		local tween = TweenService:Create(v, tweenInfo, tweenGoal)
 		tween:Play()
 		Debris:AddItem(v, 0.65)
@@ -820,7 +821,7 @@ visualSystem.AttacksVFX = {
 		local magicCircle = VFXFolder.Dark
 
 		local targetPos = (targetRoot.CFrame * CFrame.new(0, 0, 5)).Position
-		
+
 		local endParticle = VFXFolder.DarkParticles
 
 		local function createMagicCircle()
@@ -835,7 +836,7 @@ visualSystem.AttacksVFX = {
 				end
 			end)
 			circle.Parent = workspace
-			
+
 			local startPos = circle.CFrame.Position
 			local endPos = targetRoot.Position
 			local midpoint = (startPos + endPos) / 2
@@ -848,12 +849,12 @@ visualSystem.AttacksVFX = {
 			local attachment2 = Instance.new("Attachment")
 			attachment2.Parent = workspace.Terrain
 			attachment.WorldCFrame = circle.CFrame
-			
+
 			local duration = 0.3
 			local timePassed = 0
 
 			cframeValue.Value = attachment2.WorldCFrame
-			
+
 
 			local beam = VFXFolder.darkBeam:Clone()
 			beam.Parent = circle
@@ -1001,7 +1002,7 @@ visualSystem.AttacksVFX = {
 			local fangClone = template:Clone()
 			fangClone.CFrame = CFrame.lookAt(spawnCFrame.Position, target.Instance.PrimaryPart.Position) * CFrame.Angles(math.rad(-90),0,0)
 			fangClone.Parent = workspace
-		
+
 			local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
 			local direction = (targetRoot.Position - fangClone.Position).Unit
 			local finalPosition = fangClone.Position + ((direction * 12))
