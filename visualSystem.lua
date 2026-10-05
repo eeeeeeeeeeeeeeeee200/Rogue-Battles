@@ -712,20 +712,23 @@ function visualSystem.shadowDodgeAnim(dodgerInstance)
 	for i, v in pairs(dodgerInstance:GetChildren()) do
 		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "Head" then
 			local spawnedPart = v:Clone()
-			spawnedPart.Color = color3.fromRGB(91, 0, 68)
+			v.Name = "TweenPart"
+			spawnedPart.Color = Color3.fromRGB(91, 0, 68)
+			spawnedPart.Size = v.Size + Vector3.new(0.05,0.05,0.05)
 			spawnedPart.Material = Enum.Material.Neon
 			spawnedPart.CanCollide = false
 			spawnedPart.Anchored = true
-			spawnedPart.Parent = dodgerInstance
+			spawnedPart.Parent = workspace
 			table.insert(partsToTween, v)
 		end
 	end
-	for i, v in pairs(partsToTween) do
-			local tweenGoal = {Size = v.Size + 0.5}
-		local tween = TweenService.Create(v, tweenInfo, tweenGoal)
+	for i, v in ipairs(partsToTween) do
+			local tweenGoal = {Size = v.Size + Vector3.new(0.5,0.5,0.5), Transparency = 1}
+		local tween = TweenService:Create(v, tweenInfo, tweenGoal)
 		tween:Play()
-		Debris.AddItem(v, 0.65)
+		Debris:AddItem(v, 0.65)
 	end
+
 end
 
 visualSystem.AttacksVFX = {
