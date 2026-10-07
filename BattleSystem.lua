@@ -718,7 +718,7 @@ function battleSystem.damageInstance(defender, damage, attackerInstance)
 
 	local negMulti = ((shadowDodge + 1) / 2) * 0.07
 
-	  local shadowDodgeRng = (shadowDodge * 10) * negMulti
+	  local shadowDodgeRng = (shadowDodge * 10) * (1 - negMulti) -- shadow dodge is value times 10, so 1 = 10% chance, then it gets multiplied by a negative, great thanks
     if math.random(1,100) <= shadowDodgeRng then
         damage = 0
         visualSystem.shadowDodgeAnim(defenderInstance)

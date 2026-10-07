@@ -263,6 +263,8 @@ function visualSystem.ApplyAppearance(character, slotData)
 			end
 		end
 
+		fakeHead.Mesh.TextureId = "" -- stuff sudently broke so i had to do this now i guess?
+
 		fakeHead.Transparency = 0
 		fakeHead.CanCollide = false
 		fakeHead.CanTouch = false
@@ -710,29 +712,30 @@ end
 
 function visualSystem.shadowDodgeAnim(dodgerInstance)
 	local partsToTween = {}
-	local tweenInfo = TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	for i, v in pairs(dodgerInstance:GetChildren()) do
 		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "FakeHead" and v.Name ~= "Head" then
 			for i = 1, 4 do
-				task.wait(0.01)
 			local spawnedPart = Instance.new("Part")
-			spawnedPart.Color = Color3.fromRGB(30,0,20)
-			spawnedPart.Size = v.Size + Vector3.new(1,1,1)
+			local extraColor = math.random(1,20)
+			spawnedPart.Color = Color3.fromRGB(30 + extraColor,0,20 + extraColor)
+			spawnedPart.Size = v.Size + Vector3.new(0.2,0.2,0.2)
 			spawnedPart.Material = Enum.Material.Neon
 			spawnedPart.CanCollide = false
 			spawnedPart.Anchored = true
 			spawnedPart.CFrame = v.CFrame
-			spawnedPart.Position = spawnedPart.Position + Vector3.new(math.random(1,20) / 10, math.random(1,20) / 10, math.random(1,20) / 10)
+			spawnedPart.Position = spawnedPart.Position + Vector3.new(math.random(-10,10) / 10, math.random(-10,10) / 10, math.random(-10,10) / 10)
 			spawnedPart.Parent = workspace
 			table.insert(partsToTween, spawnedPart)
 			end
+			task.wait(0.02)
 		end
 	end
 	for i, v in ipairs(partsToTween) do
 		local tweenGoal = {Size = Vector3.new(0.1,0.1,0.1), Transparency = 1}
 		local tween = TweenService:Create(v, tweenInfo, tweenGoal)
 		tween:Play()
-		Debris:AddItem(v, 0.65)
+		Debris:AddItem(v, 1.05)
 	end
 
 end
