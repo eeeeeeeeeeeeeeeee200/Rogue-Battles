@@ -18,7 +18,8 @@ subracesData.Demon = {
 }
 
 subracesData.ArchdemonHide = {
-	Stats = {Defence = 0, Damage = 1, Speed = 0, MaxHealth = 10, DamageReduc = 0.1,},
+	Stats = {Defence = 0, Damage = 1, Speed = 0, MaxHealth = 10, DamageReduc = 0.1, ShadowDodge = 0.5,},
+	ElementalRes = {Dark = 0.20, Light = },
 	Attacks = {},
 	Passives = {
 		["Demonic Appearence"] = {type = "OtherPassive"},

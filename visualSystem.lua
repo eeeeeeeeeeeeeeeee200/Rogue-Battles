@@ -251,6 +251,7 @@ function visualSystem.ApplyAppearance(character, slotData)
 	end
 
 	if head then
+		head.Mesh.TextureId = ""
 		local existingFake = character:FindFirstChild("FakeHead")
 		if existingFake then existingFake:Destroy() end
 
