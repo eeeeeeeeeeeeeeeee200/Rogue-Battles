@@ -15,7 +15,7 @@ local function AddStats(before, increment)
 end
 
 local statsSystem = {}
-
+-- okay bro ritual circle time
 statsSystem.showingStats = {}
 
 function statsSystem.CalculateStats(slotData)
