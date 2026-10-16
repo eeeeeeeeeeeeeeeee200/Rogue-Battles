@@ -9,16 +9,18 @@ local sigil = sigilfolder:WaitForChild("MotherTree")
 local eye = sigil:WaitForChild("Eye")
 local detectionDistance = 30
 
+local rS = game:GetService("ReplicatedStorage")
+
 local neoning = false
 local isNearby = false
 
 local tutorial = workspace.GameMap.Tutorial
 local beamTemplate = tutorial:WaitForChild("Beam")
-local dialogueRemote = game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("DialogueRemote")
+local dialogueRemote = rS:WaitForChild("Events"):WaitForChild("DialogueRemote")
 
 local TweenService = game:GetService("TweenService")
-local changesEvent = game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("WorkspaceChangesEvent")
-local remoteChanges = game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("WorkspaceChangesRemote")
+local changesEvent = rS:WaitForChild("Events"):WaitForChild("WorkspaceChangesEvent")
+local remoteChanges = rS:WaitForChild("Events"):WaitForChild("WorkspaceChangesRemote")
 
 local camera = workspace.CurrentCamera
 local cameraPart = tutorial.CutscenePart
@@ -261,16 +263,26 @@ local function aretimHelper(model, doOrUndo)
 				end   
 			end
 		end
+		local middle = model:FindFirstChild("trueMiddle")
+		if middle then
+		local attachment = middle.Attachment
+		local particle = attachment.Particle
+		particle:Emit(500)
+		end
 	else
 		for i, v in pairs(model:GetChildren()) do
 			task.wait(0.00001)
 			v.Color = Color3.fromRGB(72, 14, 10)
 			v.Material = Enum.Material.Slate
 			if v:IsA("UnionOperation") then 
-                local info = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
-			    local otherGoal = {Size = v.Size - Vector3.new(100,50,50), Transparency = 0}
-			    local twins = TweenService:Create(v, info, otherGoal)
-			    twins:Play()
+				local info = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+				local otherGoal = {Size = v.Size - Vector3.new(100,50,50), Transparency = 0.5}
+				local twins = TweenService:Create(v, info, otherGoal)
+				twins:Play()
+				task.spawn(function()
+					task.wait(0.5)
+					v.Transparency = 0
+				end)
 			end
 		end
 	end
@@ -312,14 +324,6 @@ local function AretimSummonUndo()
 	aretimHelper(innerEye)
 	aretimHelper(middle)
 	aretimHelper(outerCorners)
-end
-
--- test
-for i = 1, 5 do
-	task.wait(5)
-	AretimSummon()
-	task.wait(5)
-	AretimSummonUndo()
 end
 
 local function playGabsCutscene()
@@ -393,6 +397,10 @@ remoteChanges.OnClientEvent:Connect(function(action, arg2, arg3)
 			camera.CameraType = Enum.CameraType.Custom
 			camera.CameraSubject = player.Character:FindFirstChild("Humanoid")
 		end)
+	elseif action == "AretimSummoning" and not arg2 then
+		AretimSummon()
+	elseif action == "AretimSummoning" and arg2 then
+		AretimSummonUndo()
 	end
 end)
 
