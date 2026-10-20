@@ -14,17 +14,18 @@ subracesData.Demon = {
 	Passives = {
 		["Demonic Appearence"] = {type = "OtherPassive"},
 		["Demonic Regeneration"] = {type = "CombatPassive"},
+		["Light Weakness"] = {type = "ElemRes", element = "Light", resistance = 0.1},
 	},
 }
 
 subracesData.ArchdemonHide = {
 	Stats = {Defence = 0, Damage = 1, Speed = 0, MaxHealth = 10, DamageReduc = 0.1, ShadowDodge = 0.5,},
-	ElementalRes = {Dark = 0.20, Light = -0.20},
 	Attacks = {},
 	Passives = {
 		["Demonic Appearence"] = {type = "OtherPassive"},
 		["Demonic Hide"] = {type = "OtherPassive"},
 		["Demonic Regeneration"] = {type = "CombatPassive"},
+		["Light Weakness"] = {type = "ElemRes", element = "Light", resistance = 0.2},
 	},
 }
 
@@ -35,6 +36,7 @@ subracesData.ArchdemonMind = {
 		["Demonic Appearence"] = {type = "OtherPassive"},
 		["Enhanced Mind"] = {type = "CombatPassive"}, 
 		["Demonic Regeneration"] = {type = "CombatPassive"},
+		["Light Weakness"] = {type = "ElemRes", element = "Light", resistance = 0.1},
 	},
 }
 
@@ -45,6 +47,7 @@ subracesData.ArchdemonSoul = {
 		["Demonic Appearence"] = {type = "OtherPassive"},
 		["The Soul"] = {type = "OtherPassive"},
 		["Demonic Regeneration"] = {type = "CombatPassive"},
+		["Light Weakness"] = {type = "ElemRes", element = "Light", resistance = 0.1},
 	},
 }
 

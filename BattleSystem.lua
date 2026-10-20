@@ -645,6 +645,8 @@ function battleSystem.calculateDamage(attacker, defender, attackName)
 	local attackData = gameData.AttacksData.Attacks[attackName]
 	if not attackData then return 0 end
 
+	local usedEnergy = attackData.energyCost
+
 	local baseDamage = attackData["baseDamage"] or 0
 	if attackData["weapon"] ~= "none" then
 		local attackerWeapons = attackerData.Weapons
@@ -668,7 +670,7 @@ function battleSystem.calculateDamage(attacker, defender, attackName)
 
 	local damage = 0
 
-	local handlerFunction = attacksSystem.DamageFunctions[attackName]
+	local handlerFunction = attacksSystem.DamageFunctions[attackName] or attacksSystem.DamageFunctions[weapon]
 	if handlerFunction then
 		local attackSpecs = {
 			baseDamage = baseDamage,
@@ -679,7 +681,8 @@ function battleSystem.calculateDamage(attacker, defender, attackName)
 			weaponMulti = weaponMulti,
 			scalingAdd = scalingAdd,
 			magicAdd = magicAdd,
-		}
+			energyCost = usedEnergy
+		} 
 		damage = handlerFunction(attacker, defender, attackSpecs)
 	else
 		damage = (baseDamage + scalingAdd + magicAdd) * elementalMulti * weaponMulti * attackerData.DamageMulti

@@ -286,7 +286,7 @@ local function aretimHelper(model, doOrUndo)
 			end
 		end
 	end
-end
+end 
 local function AretimSummon()
 	local circleModel = map.VinesBiome.RitualCircle
 	if not circleModel then return end
