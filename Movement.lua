@@ -211,3 +211,5 @@ toolEvent.Event:connect(function(tool, bool)
 	movingTable[tool] = bool
 	updatespeed()
 end)
+
+-- remember to not paste code in the wrong script...
