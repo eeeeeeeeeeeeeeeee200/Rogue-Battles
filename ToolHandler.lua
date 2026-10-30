@@ -272,13 +272,13 @@ event.OnServerEvent:Connect(function(player, tool, arg3)
 				local arm = player.Character:FindFirstChild("Left Arm").LeftShoulderAttachment
 				if i == 2 then 
 					leg = player.Character:FindFirstChild("Right Leg").RightFootAttachment
-					arm = player.Character:FindFirstChild("Left Arm").RightShoulderAttachment
+					arm = player.Character:FindFirstChild("Right Arm").RightShoulderAttachment
 				end
-					p.Attachment0 = player.Character:FindFirstChild("HumanoidRootPart").RootAttachment
-					p.Attachment1 = arm
-					p2.Attachment0 = player.Character:FindFirstChild("HumanoidRootPart").RootAttachment
-					p2.Attachment1 = arm
-				end
+				p.Attachment0 = player.Character:FindFirstChild("HumanoidRootPart").RootAttachment
+				p.Attachment1 = arm
+				p2.Attachment0 = player.Character:FindFirstChild("HumanoidRootPart").RootAttachment
+				p2.Attachment1 = arm
+			end
 		elseif arg3 == 0 then
 			for i, v in pairs(player.Character.HumanoidRootPart:GetChildren()) do
 				if v.Name == "BoltFormParticle" then v:Destroy() end
