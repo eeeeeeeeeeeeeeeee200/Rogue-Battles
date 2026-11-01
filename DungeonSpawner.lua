@@ -24,39 +24,6 @@ local event = game.ReplicatedStorage.Events.DungeonSpawnerEvent
 local battleEvent = game.ReplicatedStorage.Events.startBattleServer
 local updateUI = game.ReplicatedStorage.Events.UpdateUI
 
-local roomTypes = {
-	StartingRoom = "StartingRoom",
-	FightRoom = "",
-	SpecialRoom = "SpecialRoom",
-	ChestRoom = "ChestRoom",
-	StairsRoom = "StairsRoom",
-}
-
-local specialRooms = {
-	[1] = {"weaponry"},
-	[2] = {"healer", "weaponry"},
-	[3] = {"healer", "weaponry"},
-	[4] = {"healer", "weaponry"},
-	[5] = {"healer", "weaponry"},
-	[6] = {"healer", "weaponry"},
-	[7] = {"healer", "weaponry"},
-	[8] = {"healer", "weaponry"},
-	[9] = {"healer", "weaponry"},
-	[10] = {"healer", "weaponry"},
-}
-
---dont change anything else unless you know what you are doing
--- i might have changed some things else
-
--- gonna try giving atributes to some rooms maybe
-
--- why am i even commenting so much aint no one reading this
--- if youre reading this tell me ok
-
-local middlepos = Vector3.new(0,0,0)
-local cellxsize = 53
-local cellysize = 40
-
 local function spawnEmberShards(spawnpos, floor)
 
 	local shardMulti = floor
@@ -135,6 +102,128 @@ local function spawnEmberShards(spawnpos, floor)
 	debris:AddItem(shardDrop, 120)
 end
 
+
+local function spawnChest(room, floor)
+	local chest = game.ServerStorage.Rooms.chest:Clone()
+	chest:PivotTo(room:GetPivot() + Vector3.new(0,3,0))
+	chest.Parent = room
+	local droppedItem = require(game.ReplicatedStorage.Data.ChestData).pickItem("Chest1")
+	chest.ClickDetector.MouseClick:Connect(function(clicker)
+		task.wait(1)
+		local templateName = string.lower(string.gsub(droppedItem, " ", ""))
+		local template = game.ReplicatedStorage.Templates:FindFirstChild(templateName)
+		if not template then 
+			warn("Template " .. templateName .. " not found")
+			return 
+		end
+
+		local drop = template:Clone()
+
+
+		local rotation = CFrame.Angles(0, 0, math.rad(-90))
+		local spawnCFrame = chest:GetPivot()
+
+		drop:PivotTo(spawnCFrame * CFrame.new(-1,0,0))
+		drop.Parent = workspace
+
+		local hitbox = Instance.new("Part")
+		hitbox.Name = "ClickHitbox"
+		hitbox.Transparency = 1
+		hitbox.CanCollide = false
+		hitbox.Massless = true
+
+		local skip = false
+
+		if drop:IsA("Model") then
+			local orientation, size = drop:GetBoundingBox()
+			hitbox.Size = size
+			hitbox.CFrame = orientation
+		else
+			hitbox.Size = drop.Size
+			hitbox.CFrame = drop.CFrame
+			skip = true
+		end
+		if skip	== false then
+			local weld = Instance.new("WeldConstraint")
+			weld.Part0 = hitbox
+			weld.Part1 = drop:IsA("Model") and (drop.PrimaryPart or drop:FindFirstChildWhichIsA("BasePart")) or drop
+			weld.Parent = hitbox
+			hitbox.Parent = drop
+		end
+
+		local cd = Instance.new("ClickDetector")
+		cd.MaxActivationDistance = 10
+		if skip == true then
+			cd.Parent = drop
+		else
+			cd.Parent = hitbox
+		end
+
+		local clicked = false
+		cd.MouseClick:Connect(function(clickingPlayer)
+			if clicked then return end
+
+
+
+			clicked = true
+
+			local added = inventorySystem.AddItem(clickingPlayer, droppedItem, 1)
+			if added then
+				debris:AddItem(drop, 0)
+			end
+		end)
+
+		debris:AddItem(drop, 120) 
+		if math.random(1,2) == 2 then
+			spawnEmberShards(spawnCFrame, floor)
+		end
+		chest:Destroy()
+	end)
+end
+
+
+local roomTypes = {
+	StartingRoom = "StartingRoom",
+	FightRoom = "",
+	SpecialRoom = "SpecialRoom",
+	ChestRoom = "ChestRoom",
+	StairsRoom = "StairsRoom",
+}
+
+local specialRooms = { -- what rooms can be in each floor of the pillar
+	[1] = {"extraChest"},
+	[2] = {"healer", "weaponry", "extraChest"}, -- healer
+	[3] = {"weaponry", "extraChest"},
+	[4] = {"healer", "weaponry", "extraChest"}, -- healer
+	[5] = {"puzzle", "sigil", "extraChest"}, -- puzzles drop 2 chests
+	[6] = {"extraChest", "sigil", "healer", "puzzle"}, -- healer
+	[7] = {"sigil", "relic", "puzzle"},
+	[8] = {"relic", "sigil", "puzzle"},
+	[9] = {"relic", "sigil", "puzzle"},
+	[10] = {"relic", "puzzle"},
+}
+
+local specialRoomSetups = { -- idk if ill need more than just the pivot yet so its a table
+	["chest"] = {pivot = Vector3.new(0,0,0), func = spawnChest}, -- change spawnchest to allow for better chests if needed maybe with third paraemter
+	["weaponry"] = {pivot = Vector3.new(0,8,0)}, -- done
+	["healer"] = {pivot = Vector3.new(0,0,0)}, -- wip
+	["sigil"] = {pivot = Vector3.new(0,0,0)}, -- wip
+	["relic"] = {pivot = Vector3.new(0,0,0)}, -- for later make it run spawnchest but modify the function so it can uhhhh change the possible drops to alternate one
+	["puzzle"] = {pivot = Vector3.new(0,0,0)}, -- not done, rewards 2 or 3 better chests maybe idk but hard or maybe a perm buff for the pillar
+}
+
+--dont change anything else unless you know what you are doing
+-- i might have changed some things else
+
+-- gonna try giving atributes to some rooms maybe
+
+-- why am i even commenting so much aint no one reading this
+-- if youre reading this tell me ok
+
+local middlepos = Vector3.new(0,0,0)
+local cellxsize = 53
+local cellysize = 40
+
 local function pickRoomType(number, room, floor)
 	if number == 1 then
 		room:SetAttribute("RoomType", "StartingRoom")
@@ -168,7 +257,7 @@ local function pickRoomType(number, room, floor)
 	end
 end
 
-function addcell(cellnumber, floor)
+local function addcell(cellnumber, floor)
 	local room = Instance.new("Vector3Value")
 	room.Name = "Room".. tostring(cellnumber)
 	print(room.Name)
@@ -347,81 +436,7 @@ local function spawnDungeon(player, floor)
 			obelisk.Parent = room
 
 		elseif typeOfRoom == "ChestRoom" then
-			local chest = game.ServerStorage.Rooms.Chest:Clone()
-			chest:PivotTo(room:GetPivot() + Vector3.new(0,3,0))
-			chest.Parent = room
-			local droppedItem = require(game.ReplicatedStorage.Data.ChestData).pickItem("Chest1")
-			chest.ClickDetector.MouseClick:Connect(function(clicker)
-				task.wait(1)
-				local templateName = string.lower(string.gsub(droppedItem, " ", ""))
-				local template = game.ReplicatedStorage.Templates:FindFirstChild(templateName)
-				if not template then 
-					warn("Template " .. templateName .. " not found")
-					return 
-				end
-
-				local drop = template:Clone()
-
-
-				local rotation = CFrame.Angles(0, 0, math.rad(-90))
-				local spawnCFrame = chest:GetPivot()
-
-				drop:PivotTo(spawnCFrame * CFrame.new(-1,0,0))
-				drop.Parent = workspace
-
-				local hitbox = Instance.new("Part")
-				hitbox.Name = "ClickHitbox"
-				hitbox.Transparency = 1
-				hitbox.CanCollide = false
-				hitbox.Massless = true
-
-				local skip = false
-
-				if drop:IsA("Model") then
-					local orientation, size = drop:GetBoundingBox()
-					hitbox.Size = size
-					hitbox.CFrame = orientation
-				else
-					hitbox.Size = drop.Size
-					hitbox.CFrame = drop.CFrame
-					skip = true
-				end
-				if skip	== false then
-					local weld = Instance.new("WeldConstraint")
-					weld.Part0 = hitbox
-					weld.Part1 = drop:IsA("Model") and (drop.PrimaryPart or drop:FindFirstChildWhichIsA("BasePart")) or drop
-					weld.Parent = hitbox
-					hitbox.Parent = drop
-				end
-
-				local cd = Instance.new("ClickDetector")
-				cd.MaxActivationDistance = 10
-				if skip == true then
-					cd.Parent = drop
-				else
-					cd.Parent = hitbox
-				end
-
-				local clicked = false
-				cd.MouseClick:Connect(function(clickingPlayer)
-					if clicked then return end
-
-
-
-					clicked = true
-
-					local added = inventorySystem.AddItem(clickingPlayer, droppedItem, 1)
-					if added then
-						debris:AddItem(drop, 0)
-					end
-				end)
-
-				debris:AddItem(drop, 120) 
-				if math.random(1,2) == 2 then
-					spawnEmberShards(spawnCFrame, floor)
-				end
-				chest:Destroy()
-			end)
+			spawnChest(room, floor)
 		elseif typeOfRoom == "BossRoom" then
 			setupBattle(room, true)
 			local obelisk = game.ServerStorage.Rooms.Obeliskblue:Clone()
@@ -430,13 +445,12 @@ local function spawnDungeon(player, floor)
 				spawnDungeon(clicker, floor + 1)
 			end)
 			obelisk.Parent = room
-		elseif typeOfRoom == "SpecialRoom" then
+		elseif typeOfRoom == "SpecialRoom" then -- spawn special room models
 			local pickedRoom = pickSpecialRoom(floor)
-			if pickedRoom == "weaponry" then
-				local obelisk = game.ServerStorage.Rooms.BarbarianSwordPedestal:Clone()
-				obelisk:PivotTo(room:GetPivot() + Vector3.new(0,8,0))
-				obelisk.Parent = room
-			end
+			local model = game.ServerStorage.Rooms[pickedRoom]
+			if pickedRoom.func then pickedRoom.func(room, floor) end
+			model:PivotTo(room:GetPivot() + specialRoomSetups[pickedRoom].pivot)
+			model.Parent = room
 		end
 	end
 	local tp = startingRoomModel:GetPivot()
