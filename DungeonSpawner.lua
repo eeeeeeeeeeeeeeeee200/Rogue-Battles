@@ -19,7 +19,7 @@ local debris = game:GetService("Debris")
 local ShardTemplate = rS:WaitForChild("Templates"):WaitForChild("EmberShardPickup")
 
 
--- bindable event
+-- bindable event -- dude rooms sizes are so bad to do uhh
 local event = game.ReplicatedStorage.Events.DungeonSpawnerEvent
 local battleEvent = game.ReplicatedStorage.Events.startBattleServer
 local updateUI = game.ReplicatedStorage.Events.UpdateUI
@@ -54,9 +54,7 @@ local function spawnEmberShards(spawnpos, floor)
 	label.Text = tostring(amount) .. " ES"
 	label.TextColor3 = Color3.new(1, 0.560784, 0.0235294)
 	label.TextScaled = true
-	label.Font = Enum.Font.Highway
 	label.TextStrokeTransparency = 0
-	label.FontFace.Bold = true
 
 
 	bgui.Parent = shardDrop
@@ -103,11 +101,12 @@ local function spawnEmberShards(spawnpos, floor)
 end
 
 
-local function spawnChest(room, floor)
+local function spawnChest(room, floor, chestName)
 	local chest = game.ServerStorage.Rooms.chest:Clone()
-	chest:PivotTo(room:GetPivot() + Vector3.new(0,3,0))
+	chest:PivotTo(room.RoomSize:GetPivot() - Vector3.new(0,0.5,0))
 	chest.Parent = room
-	local droppedItem = require(game.ReplicatedStorage.Data.ChestData).pickItem("Chest1")
+	local droppedItem = require(game.ReplicatedStorage.Data.ChestData).pickItem(chestName)
+	if not chest:FindFirstChild("ClickDetector") then local c = Instance.new("ClickDetector") c.Parent = chest end
 	chest.ClickDetector.MouseClick:Connect(function(clicker)
 		task.wait(1)
 		local templateName = string.lower(string.gsub(droppedItem, " ", ""))
@@ -191,7 +190,7 @@ local roomTypes = {
 }
 
 local specialRooms = { -- what rooms can be in each floor of the pillar
-	[1] = {"extraChest"},
+	[1] = {"extraChest"}, 
 	[2] = {"healer", "weaponry", "extraChest"}, -- healer
 	[3] = {"weaponry", "extraChest"},
 	[4] = {"healer", "weaponry", "extraChest"}, -- healer
@@ -204,11 +203,11 @@ local specialRooms = { -- what rooms can be in each floor of the pillar
 }
 
 local specialRoomSetups = { -- idk if ill need more than just the pivot yet so its a table
-	["chest"] = {pivot = Vector3.new(0,0,0), func = spawnChest}, -- change spawnchest to allow for better chests if needed maybe with third paraemter
+	["extraChest"] = {pivot = Vector3.new(0,0,0), func = spawnChest, arg = "BasaltChest", noModel = true}, -- should be functional now
 	["weaponry"] = {pivot = Vector3.new(0,8,0)}, -- done
 	["healer"] = {pivot = Vector3.new(0,0,0)}, -- wip
 	["sigil"] = {pivot = Vector3.new(0,0,0)}, -- wip
-	["relic"] = {pivot = Vector3.new(0,0,0)}, -- for later make it run spawnchest but modify the function so it can uhhhh change the possible drops to alternate one
+	["relic"] = {pivot = Vector3.new(0,0,0), func = spawnChest, arg = "BasaltRelicChest"}, -- needs diferent drops added
 	["puzzle"] = {pivot = Vector3.new(0,0,0)}, -- not done, rewards 2 or 3 better chests maybe idk but hard or maybe a perm buff for the pillar
 }
 
@@ -221,8 +220,12 @@ local specialRoomSetups = { -- idk if ill need more than just the pivot yet so i
 -- if youre reading this tell me ok
 
 local middlepos = Vector3.new(0,0,0)
-local cellxsize = 53
-local cellysize = 40
+local checkSize = game.ServerStorage.Rooms.L:FindFirstChild("RoomSize")
+if not checkSize then return end
+local checkSize = checkSize.Size
+local cellxsize = checkSize.X
+local cellysize = checkSize.Y
+local cellzsize = checkSize.Z
 
 local function pickRoomType(number, room, floor)
 	if number == 1 then
@@ -336,6 +339,7 @@ local function pickSpecialRoom(floor)
 end
 
 local function spawnDungeon(player, floor)
+	if not floor then floor = 1 end
 	local startingRoomModel = nil
 	local playerParty = partySystem.playerParties[player]
 	local playersToTP = {}
@@ -420,10 +424,10 @@ local function spawnDungeon(player, floor)
 		if typeOfRoom == "StartingRoom" then startingRoomModel = room end
 		room.Parent = workspace.DungeonRooms
 
-		room:SetPrimaryPartCFrame(CFrame.new(
-			(roomposition.X * cellxsize) + dungeonSpawnLocation.X,
+		room:PivotTo(CFrame.new(
+			(roomposition.X * cellysize) + dungeonSpawnLocation.X, -- brother why does it only work properly when you multiply them both by y but not if you use z or x as youd think it should be
 			dungeonSpawnLocation.Y, 
-			(roomposition.Z * cellysize) + dungeonSpawnLocation.Z))
+			(roomposition.Z * cellysize) + dungeonSpawnLocation.Z))-- so like why did maor make this use cell y size for the z???
 		-- battle setup
 		if typeOfRoom == "FightRoom" then
 			setupBattle(room, false)
@@ -436,7 +440,7 @@ local function spawnDungeon(player, floor)
 			obelisk.Parent = room
 
 		elseif typeOfRoom == "ChestRoom" then
-			spawnChest(room, floor)
+			spawnChest(room, floor, "BasaltChest")
 		elseif typeOfRoom == "BossRoom" then
 			setupBattle(room, true)
 			local obelisk = game.ServerStorage.Rooms.Obeliskblue:Clone()
@@ -447,10 +451,13 @@ local function spawnDungeon(player, floor)
 			obelisk.Parent = room
 		elseif typeOfRoom == "SpecialRoom" then -- spawn special room models
 			local pickedRoom = pickSpecialRoom(floor)
+			local setup = specialRoomSetups[pickedRoom]
 			local model = game.ServerStorage.Rooms[pickedRoom]
-			if pickedRoom.func then pickedRoom.func(room, floor) end
-			model:PivotTo(room:GetPivot() + specialRoomSetups[pickedRoom].pivot)
+			if not setup.noModel then
+			model:PivotTo(room:GetPivot() + setup.pivot)
 			model.Parent = room
+			end
+			if setup and setup.func then setup.func(room, floor, setup.arg) end -- runs the function named the same as in the setup
 		end
 	end
 	local tp = startingRoomModel:GetPivot()
@@ -463,5 +470,6 @@ end
 -- made this into a function idk 
 -- so i can do another floor without re calling the event
 event.Event:Connect(function(player, floor)
+	if not floor then warn("event didnt receive floor number") end
 	spawnDungeon(player, floor)
 end)
