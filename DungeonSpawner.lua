@@ -17,6 +17,7 @@ local dataSystem = require(rS.Systems.DataSystem)
 local inventorySystem = require(rS.Systems.InvSystem)
 local debris = game:GetService("Debris")
 local ShardTemplate = rS:WaitForChild("Templates"):WaitForChild("EmberShardPickup")
+local visualSystem = require(game.ReplicatedStorage:WaitForChild("Systems"):WaitForChild("VisualSystem"))
 
 
 -- bindable event -- dude rooms sizes are so bad to do uhh
@@ -180,6 +181,43 @@ local function spawnChest(room, floor, chestName)
 	end)
 end
 
+local healPerRace = { -- negative is heal positive is damage
+	["None"] = -10,
+	["Demon"] = 10,
+	["Fire"] = -20, -- rename the subrace i forgot what i was gonna call it
+}
+
+local function setupHealer(room)
+	local model = room:FindFirstChild("healer")
+	local debounce = {}
+
+	for i,v in pairs(model:GetChildren()) do
+		if v:IsA("BasePart") then
+			v.Touched:Connect(function(hit)
+				local plr = game.Players:GetPlayerFromCharacter(hit.Parent)
+				if plr then
+					if table.find(debounce, plr) then return end
+					local slotData = require(plr.Character:FindFirstChild("InstanceData"))
+					if slotData then
+						table.insert(debounce, plr)
+						local heal = healPerRace[slotData.SubRace] or 0
+						visualSystem.applyEffectVFX(plr.Character, "PinkFire")
+						task.spawn(function()
+							for i = 1, 3 do
+							task.wait(1)
+								slotData.Health += math.clamp(10, 0, slotData.MaxHealth - slotData.Health)
+								visualSystem.showDamageText(plr.Character, heal)
+							end
+							table.remove(debounce, table.find(debounce, plr))
+							visualSystem.removeEffectVFX(plr.Character, "PinkFire")
+						end)
+					end
+				end
+			end)
+		end
+	end
+end
+
 
 local roomTypes = {
 	StartingRoom = "StartingRoom",
@@ -190,14 +228,14 @@ local roomTypes = {
 }
 
 local specialRooms = { -- what rooms can be in each floor of the pillar
-	[1] = {"extraChest"}, 
+	[1] = {"extraChest"},  -- only chest on first floor
 	[2] = {"healer", "weaponry", "extraChest"}, -- healer
 	[3] = {"weaponry", "extraChest"},
 	[4] = {"healer", "weaponry", "extraChest"}, -- healer
 	[5] = {"puzzle", "sigil", "extraChest"}, -- puzzles drop 2 chests
 	[6] = {"extraChest", "sigil", "healer", "puzzle"}, -- healer
 	[7] = {"sigil", "relic", "puzzle"},
-	[8] = {"relic", "sigil", "puzzle"},
+	[8] = {"relic", "sigil", "puzzle"}, 
 	[9] = {"relic", "sigil", "puzzle"},
 	[10] = {"relic", "puzzle"},
 }
@@ -205,7 +243,7 @@ local specialRooms = { -- what rooms can be in each floor of the pillar
 local specialRoomSetups = { -- idk if ill need more than just the pivot yet so its a table
 	["extraChest"] = {pivot = Vector3.new(0,0,0), func = spawnChest, arg = "BasaltChest", noModel = true}, -- should be functional now
 	["weaponry"] = {pivot = Vector3.new(0,8,0)}, -- done
-	["healer"] = {pivot = Vector3.new(0,0,0)}, -- wip
+	["healer"] = {pivot = Vector3.new(0,4.5,0), func = setupHealer}, -- wip
 	["sigil"] = {pivot = Vector3.new(0,0,0)}, -- wip
 	["relic"] = {pivot = Vector3.new(0,0,0), func = spawnChest, arg = "BasaltRelicChest"}, -- needs diferent drops added
 	["puzzle"] = {pivot = Vector3.new(0,0,0)}, -- not done, rewards 2 or 3 better chests maybe idk but hard or maybe a perm buff for the pillar
@@ -452,17 +490,17 @@ local function spawnDungeon(player, floor)
 		elseif typeOfRoom == "SpecialRoom" then -- spawn special room models
 			local pickedRoom = pickSpecialRoom(floor)
 			local setup = specialRoomSetups[pickedRoom]
-			local model = game.ServerStorage.Rooms[pickedRoom]
+			local model = game.ServerStorage.Rooms[pickedRoom]:Clone()
 			if not setup.noModel then
-			model:PivotTo(room:GetPivot() + setup.pivot)
-			model.Parent = room
+				model:PivotTo(room:GetPivot() + setup.pivot)
+				model.Parent = room
 			end
 			if setup and setup.func then setup.func(room, floor, setup.arg) end -- runs the function named the same as in the setup
 		end
 	end
 	local tp = startingRoomModel:GetPivot()
 	for i, v in pairs(playersToTP) do 
-		v.Character.HumanoidRootPart.Anchored = false
+		v.Character.HumanoidRootPart.Anchored = false 
 		v.Character:PivotTo(tp + Vector3.new(0,3,0))
 	end
 end

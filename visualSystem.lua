@@ -235,7 +235,7 @@ function visualSystem.ApplyAppearance(character, slotData)
 		if item:IsA("Accessory") or item:IsA("Clothing") then item:Destroy() end
 	end
 	if head and head:FindFirstChild("face") then head.face:Destroy() end
-	
+
 	humanoid.RequiresNeck = false
 
 	local sourceRigFolder = SkinToneFolder:FindFirstChild(slotData.Race) or SkinToneFolder
@@ -656,31 +656,33 @@ end
 visualSystem.activeEffects = {}
 
 function visualSystem.applyEffectVFX(participantInstance, effect)
-	local effectName = effect.name
+	local effectName = nil
+	if type(effect) == "string" then effectName = effect
+	else effectName = effect.name end
 
-	local handlerFunction = visualSystem.EffectsVFX[effectName]
-	if handlerFunction then
-		handlerFunction(participantInstance, effect)
-		return
-	end
+local handlerFunction = visualSystem.EffectsVFX[effectName]
+if handlerFunction then
+	handlerFunction(participantInstance, effect)
+	return
+end
 
-	local effectTemplate = VFXFolder:FindFirstChild(effectName)
-	if not effectTemplate then return end
+local effectTemplate = VFXFolder:FindFirstChild(effectName)
+if not effectTemplate then return end
 
-	if not visualSystem.activeEffects[participantInstance] then
-		visualSystem.activeEffects[participantInstance] = {}
-	end
+if not visualSystem.activeEffects[participantInstance] then
+	visualSystem.activeEffects[participantInstance] = {}
+end
 
-	local effectClone = effectTemplate:Clone()
-	if effectClone:IsA("ParticleEmitter") then 
-		effectClone.Parent = participantInstance:FindFirstChild("HumanoidRootPart")
-	elseif effectClone:IsA("BillboardGui") then
-		effectClone.Parent = participantInstance.PrimaryPart
-		effectClone.Adornee = participantInstance.PrimaryPart
-	else
-		effectClone.Parent = participantInstance
-	end
-	table.insert(visualSystem.activeEffects[participantInstance], effectClone)
+local effectClone = effectTemplate:Clone()
+if effectClone:IsA("ParticleEmitter") then 
+	effectClone.Parent = participantInstance:FindFirstChild("HumanoidRootPart")
+elseif effectClone:IsA("BillboardGui") then
+	effectClone.Parent = participantInstance.PrimaryPart
+	effectClone.Adornee = participantInstance.PrimaryPart
+else
+	effectClone.Parent = participantInstance
+end
+table.insert(visualSystem.activeEffects[participantInstance], effectClone)
 end
 
 function visualSystem.removeEffectVFX(participantInstance, effectName)
@@ -717,17 +719,17 @@ function visualSystem.shadowDodgeAnim(dodgerInstance)
 	for i, v in pairs(dodgerInstance:GetChildren()) do
 		if v.Name ~= "HumanoidRootPart" and v:IsA("BasePart") and v.Name ~= "FakeHead" and v.Name ~= "Head" then
 			for i = 1, 4 do
-			local spawnedPart = Instance.new("Part")
-			local extraColor = math.random(1,20)
-			spawnedPart.Color = Color3.fromRGB(30 + extraColor,0,20 + extraColor)
-			spawnedPart.Size = v.Size + Vector3.new(0.2,0.2,0.2)
-			spawnedPart.Material = Enum.Material.Neon
-			spawnedPart.CanCollide = false
-			spawnedPart.Anchored = true
-			spawnedPart.CFrame = v.CFrame
-			spawnedPart.Position = spawnedPart.Position + Vector3.new(math.random(-10,10) / 10, math.random(-10,10) / 10, math.random(-10,10) / 10)
-			spawnedPart.Parent = workspace
-			table.insert(partsToTween, spawnedPart)
+				local spawnedPart = Instance.new("Part")
+				local extraColor = math.random(1,20)
+				spawnedPart.Color = Color3.fromRGB(30 + extraColor,0,20 + extraColor)
+				spawnedPart.Size = v.Size + Vector3.new(0.2,0.2,0.2)
+				spawnedPart.Material = Enum.Material.Neon
+				spawnedPart.CanCollide = false
+				spawnedPart.Anchored = true
+				spawnedPart.CFrame = v.CFrame
+				spawnedPart.Position = spawnedPart.Position + Vector3.new(math.random(-10,10) / 10, math.random(-10,10) / 10, math.random(-10,10) / 10)
+				spawnedPart.Parent = workspace
+				table.insert(partsToTween, spawnedPart)
 			end
 			task.wait(0.02)
 		end
