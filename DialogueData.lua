@@ -123,7 +123,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Kab"] = {
 		{ -- dialogue 1
 			Text = "Wanna buy some corn?",
@@ -216,7 +216,7 @@ NPCDialogue.Dialogues = {
 			}
 		},
 	},
-	
+
 	["Gabriel4"] = {
 		{ -- dialogue 1
 			Text = "May we move on?",
@@ -329,7 +329,7 @@ NPCDialogue.Dialogues = {
 			}
 		},
 	},
-	
+
 	-- lancer
 	["Dean"] = {
 		{
@@ -348,7 +348,7 @@ NPCDialogue.Dialogues = {
 			Replies = { Text = "Bye.", Next = 2}
 		},
 	},
-	
+
 	-- cool name
 	["Ezra"] = {
 		{
@@ -367,9 +367,9 @@ NPCDialogue.Dialogues = {
 			Replies = { Text = "Bye.", Next = 2}
 		},
 	},
-	
--- french croissant merci boku paris 
--- everybody gangsta in france until some moth guy in paris starts making villians
+
+	-- french croissant merci boku paris 
+	-- everybody gangsta in france until some moth guy in paris starts making villians
 	["Benoit"] = {
 		{
 			Text = "Dig! Dig! To the center of the earth! The sky kingdom will be mine!",
@@ -438,7 +438,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["RobbieLearning"] = {
 		{
 			Text = "I can teach you more for 20 Ember Shards.",
@@ -469,7 +469,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Robbie_Trained"] = {
 		{
 			Text = "I can feel your strength. You will surely make it far in this world.",
@@ -482,7 +482,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Robbie_WrongClass"] = {
 		{
 			Text = "Ah... how nice...",
@@ -542,7 +542,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["NoelleNotLearning"] = {
 		{
 			Text = "I can't teach you any more if you don't have a spear.",
@@ -568,7 +568,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Noelle_WrongClass"] = {
 		{
 			Text = "What do you want?",
@@ -586,7 +586,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	-- from hit anime brawl star
 	["Edgar"] = {
 		{
@@ -672,7 +672,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["Jin"] = {
 		{
 			Text = "...",
@@ -698,7 +698,7 @@ NPCDialogue.Dialogues = {
 		},
 		-- dialogue 4: evil temple
 		{
-			
+
 			Text = "So you're the one Grim mentioned, godly soul, he said we could experiment on you, but i'll tell you this. You're probably not living any of the experiments, and if you do... nevermind. If you truly want to participate just for some rewards, talk to Rin over there.",
 			Replies = {
 				{ Text = "Experiments.", Next = 5 },
@@ -716,7 +716,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	["JinRecruit"] = {
 		{
 			Text = "...",
@@ -769,9 +769,9 @@ NPCDialogue.Dialogues = {
 			}
 
 		},
-		
+
 	},
-	
+
 	-- fish in the volcano hotlands undyne ahhhh orat but anti racist :sunglasses:
 	["Faye"] = {
 		{
@@ -787,7 +787,7 @@ NPCDialogue.Dialogues = {
 			Text = "...",
 			Next = nil
 		},
-		
+
 		{
 			--dialogue 3: you need 35 max health to get the class
 			Text = "Train you? Well, teaching others is the best way to learn... I'll teach you for cheap, but only if you have enough endurance to endure it.",
@@ -811,17 +811,17 @@ NPCDialogue.Dialogues = {
 			}
 
 		},
-		
+
 	},
-	
+
 	["Faye_Trained"] = {
 		{
 			Text = "...",
 			Next = nil,
 		},
 	},
-		
-		
+
+
 	["FayeLearning"] = {
 		{
 			Text = "I'll teach you more for 20 Ember Shards.",
@@ -839,7 +839,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	--Defender Trainer
 	["Kaint_Other"] = {
 		{
@@ -911,7 +911,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	-- straight man dont let keo say otherwise
 	["Zylies"] = {
 		{
@@ -973,11 +973,11 @@ NPCDialogue.Dialogues = {
 			--dialogue 8: scrollable gems
 			Text = "Very well.",
 			Next = nil
-			
+
 
 		},
 	},
-	
+
 	["ZyliesLearning"] = {
 		{
 			Text = "I'll teach you more for 40 Ember Shards.",
@@ -995,14 +995,14 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["Zylies_Trained"] = {
 		{
 			Text = "You have come a long way. I am proud of you.",
 			Next = nil,
 		},
 	},
-	
+
 	["ZyliesWrongClass"] = {
 		{
 			Text = "Greetings, young one. I see you have discovered the tree.",
@@ -1066,7 +1066,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	-- the mother of all trees, including you
 	["MotherTree"] = {
 		{
@@ -1125,7 +1125,7 @@ NPCDialogue.Dialogues = {
 			}
 
 		},
-		
+
 		{
 			-- dialogue 8: Goddess
 			Text = "I'm sorry, but even I have not lived long enough to learn much about her, although I can feel the balance of the universe slowly collapsing from her doings.",
@@ -1253,7 +1253,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	-- for all the little seedlings of the world
 	["MotherTreeMekolkal"] = {
 		{
@@ -1378,7 +1378,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	-- for all the little wizard seedlings of the world
 	["MotherTreeWizardMekolkal"] = {
 		{
@@ -1633,7 +1633,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	-- for all the maxed freshies of the world
 	["MotherTreeTrained"] = {
 		{
@@ -1711,7 +1711,7 @@ NPCDialogue.Dialogues = {
 		},
 	},
 
-		
+
 	-- for all the little magic people of the world
 	["MotherTreeTraining"] = {
 		{
@@ -1773,7 +1773,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	-- for all the little evil seedlings of the world
 	["MotherTreeCorrupted"] = {
 		{
@@ -1798,7 +1798,7 @@ NPCDialogue.Dialogues = {
 	},
 
 
-	
+
 	["Keo"] = {
 		{
 			Text = "I'm always the one taking the hits for the team... I've seen this hospital more than my family at this point.",
@@ -1822,7 +1822,7 @@ NPCDialogue.Dialogues = {
 			Next = nil,
 		},
 	},
-	
+
 	["Keo_ShieldEquipped"] = {
 		{
 			Text = "I see you've got yourself a sturdy shield, you don't seem like you know how to use it though, if you want to I could teach you...",
@@ -1847,7 +1847,7 @@ NPCDialogue.Dialogues = {
 			Next = nil,
 		},
 	},
-	
+
 	["KeoLearning"] = {
 		{
 			Text = "Didn't get yourself killed yet I see, I'll teach you more for 40 Embers.",
@@ -1865,7 +1865,7 @@ NPCDialogue.Dialogues = {
 			Next = nil,
 		},
 	},
-	
+
 	["Keo_Other"] = {
 		{
 			Text = "I'm always the one taking the hits for the team... I've seen this hospital more than my family at this point.",
@@ -1876,7 +1876,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["Teks"] = {
 		{
 			Text = "what are you lookin' at? never seen a seadog on land before?",
@@ -1889,7 +1889,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Teks_Permit"] = {
 		{
 			Text = "what are you lookin' at? never seen a seadog on land before?",
@@ -1914,7 +1914,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Teks_QuestCompleted"] = {
 		{
 			Text =  "HAHA! Can't believe it! You gone right through with it! Fine! I'll teach you some tricks I got in my sleeves.. for a price of 70 Embers of course.",
@@ -1932,7 +1932,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Teks_Training"] = {
 		{
 			Text = "You wanna lean more? Pay me up 70 ember shards then we talk!" ,
@@ -1950,7 +1950,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Teks_Trained"] = {
 		{
 			Text = "Haha! Ain't it my favourite buccaneer?!",
@@ -2026,7 +2026,7 @@ NPCDialogue.Dialogues = {
 			Text = "What would you like to sell?",
 			Next = nil
 		},
-		
+
 		{
 			-- nothing
 			Text = "...",
@@ -2067,7 +2067,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["LabExitDoor"] = {
 		{
 			Text = "Would you like to leave?",
@@ -2112,7 +2112,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Anneliese"] = {
 		{
 			Text = "Hey, ain't ya a new face.. Whatcha want?",
@@ -2156,7 +2156,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["AnnelieseBeat"] = {
 		{
 			Text = "Hell.. soul.. You did horrible and that's good enough for me, great job.",
@@ -2174,7 +2174,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Dummy"] = {
 		{
 			Text = "Train?",
@@ -2188,7 +2188,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["DummyGab"] = {
 		{
 			Text = "Start a battle?",
@@ -2202,7 +2202,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Orb"] = {
 		{
 			Text = "The Orb. Touch it?",
@@ -2220,7 +2220,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["BeachOrb"] = {
 		{
 			Text = "An Orb. Seems important.",
@@ -2238,7 +2238,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["LuneOrb"] = {
 		{
 			Text = "An Orb. Seems important.",
@@ -2256,7 +2256,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["VolcanoOrb"] = {
 		{
 			Text = "An Orb. Seems important.",
@@ -2274,7 +2274,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["IslandOrb"] = {
 		{
 			Text = "An Orb. Seems important.",
@@ -2292,7 +2292,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 
 
 	["HugoDoor"] = {
@@ -2314,7 +2314,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["ElesigDoor"] = {
 		{
 			Text = "A door. Open it?",
@@ -2326,14 +2326,14 @@ NPCDialogue.Dialogues = {
 		{
 			Text = "...",
 			Next = nil
-			
+
 		},
 		{
 			Text = "...",
 			Next = nil
 		},
 	},
-	
+
 	["ElesigExitDoor"] = {
 		{
 			Text = "A door. Open it?",
@@ -2352,7 +2352,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
--- GATE KIP :fire: :fire: :fire:
+	-- GATE KIP :fire: :fire: :fire:
 	["KipDoor"] = {
 		{
 			Text = "It's a door. Knock on it?",
@@ -2386,7 +2386,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	-- gatekeepers supposed to open gates
 	["KipDoorPassword"] = {
 		{
@@ -2438,7 +2438,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	-- gatekeepers supposed to open gates
 	["Kip"] = {
 		{
@@ -2458,7 +2458,7 @@ NPCDialogue.Dialogues = {
 
 		},
 	},
-	
+
 	-- gatekeepers supposed to open gates, but you already opened it.
 	["CleinQuestDone"] = {
 		{
@@ -2498,7 +2498,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	-- Soul Giver
 	-- evil gabe agres
 	["Agres"] = {
@@ -2566,7 +2566,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["Agres_Quest"] = {
 		{
 			Text = "placeholder, collect my artifacts or something i battle you.",
@@ -2584,7 +2584,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	-- not to be confused with ember shards
 	["Ember"] = {
 		{
@@ -2605,7 +2605,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	--SEA n - pronounced shaw! SilkSong
 	["Sean"] = {
 		{
@@ -2620,7 +2620,7 @@ NPCDialogue.Dialogues = {
 			-- No fees, he's generous
 			Text = "Oh, don't worry about the price! I'm paid by the shopkeepers on the island. After all, they can't sell anything if no one can reach them!",
 			Replies = {
-				
+
 				{ Text = "Lets go!", Next = 4 },
 				{ Text = "maybe next time.", Next = 3 },
 			}
@@ -2635,7 +2635,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	--SEA n - pronounced shaw! SilkSong
 	["SeanIsland"] = {
 		{
@@ -2655,7 +2655,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	-- neythan
 	["Nate"] = {
 		{
@@ -2749,7 +2749,7 @@ NPCDialogue.Dialogues = {
 
 	["NateUndoneQuest"] = {
 		{
-	
+
 			Text = "Oh! Thank you. Here, have 60 Ember Shards.",
 			Replies = {
 				{ Text = "Claim.", Next = 2 },
@@ -2763,7 +2763,7 @@ NPCDialogue.Dialogues = {
 
 	["NateHasShards"] = {
 		{
-			
+
 			Text = "Thank you!",
 			Next = nil
 		},
@@ -2772,8 +2772,8 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
-	
+
+
 	["Rex"] = {
 		{
 			Text = "What's up? Wanna buy anything?",
@@ -2789,7 +2789,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 		{
-			
+
 			Text = "Come back if you need anything!",
 			Next = nil
 		},
@@ -2817,7 +2817,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["RexQuest"] = {
 		{
 			Text = "What's up?",
@@ -2841,8 +2841,8 @@ NPCDialogue.Dialogues = {
 			}
 		},
 	},
-	
-	
+
+
 	["RexQuestDone"] = {
 		{
 			Text = "What's up?",
@@ -2861,7 +2861,7 @@ NPCDialogue.Dialogues = {
 		},
 	},
 
-	
+
 	["RexIngredients"] = {
 		{
 			Text = "So? Got the ingredients?",
@@ -2883,8 +2883,8 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
-	
+
+
 	["Denis"] = {
 		{
 			Text = "Ugh... I lost my keys again...",
@@ -2926,11 +2926,11 @@ NPCDialogue.Dialogues = {
 		},
 		{
 			Text = "...",
-		    Next = nil
+			Next = nil
 		},
 	},
-	
-	
+
+
 
 	["Elesig"] = {
 		{
@@ -2970,7 +2970,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["Elesig2"] = {
 		{
 			Text = "Hey buddy!",
@@ -3001,7 +3001,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["ElesigCombat"] = {
 		{
 			Text = "Hey buddy! I see your soul disconected from your body, and you got sent here. Got any questions before I send you back to Aretim?",
@@ -3039,11 +3039,11 @@ NPCDialogue.Dialogues = {
 			}
 		},
 		{
-		Text = "Demi-Gods such as me aren't that diferent from pure Gods, we all represent something, but Demi-Gods throw away part of themselves to achieve some other goal. I simply wanted freedom.",
-		Replies = {
-			{ Text = "Pure Gods.", Next = 7},
-			{ Text = "Send me back.", Next = 3 }
-		}
+			Text = "Demi-Gods such as me aren't that diferent from pure Gods, we all represent something, but Demi-Gods throw away part of themselves to achieve some other goal. I simply wanted freedom.",
+			Replies = {
+				{ Text = "Pure Gods.", Next = 7},
+				{ Text = "Send me back.", Next = 3 }
+			}
 		},
 		{
 			Text = "But pure Gods like Aretim grow stronger the more purpose they have, the Goddess is trying to grow stronger by making her own role bigger. Basically becoming stronger by being God, instead of being God because of her strength.",
@@ -3052,9 +3052,9 @@ NPCDialogue.Dialogues = {
 			}
 		},
 	},
-	 
-		
-			
+
+
+
 
 	["ClunkyArmor"] = {
 		{
@@ -3091,7 +3091,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["SunHelmet"] = {
 		{
 			Text = "Do you want to buy the Sun Helmet for 100 Ember Shards?",
@@ -3109,7 +3109,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["SpartanHelmet"] = {
 		{
 			Text = "Do you want to buy the Spartan Helmet for 90 Ember Shards?",
@@ -3127,7 +3127,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["TravelerHood"] = {
 		{
 			Text = "Do you want to buy the Traveler Hood for 40 Ember Shards?",
@@ -3145,7 +3145,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["VolcanicHelmet"] = {
 		{
 			Text = "Do you want to buy the Volcanic Helmet for 120 Ember Shards?",
@@ -3163,7 +3163,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["BlueMageArmor"] = {
 		{
 			Text = "Do you want to buy the Blue Mage Armor for 100 Ember Shards?",
@@ -3181,7 +3181,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["WarriorArmor"] = {
 		{
 			Text = "Do you want to buy the Warrior Armor for 120 Ember Shards?",
@@ -3199,7 +3199,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["SpearfighterArmor"] = {
 		{
 			Text = "Do you want to buy the Spearfighter Armor for 140 Ember Shards?",
@@ -3217,7 +3217,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["DefenderArmor"] = {
 		{
 			Text = "Do you want to buy the Defender Armor for 80 Ember Shards?",
@@ -3235,7 +3235,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["VolcanicArmor"] = {
 		{
 			Text = "Do you want to buy the Volcanic Armor for 150 Ember Shards?",
@@ -3253,7 +3253,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["GothicSpec"] = {
 		{
 			Text = "ARE YOU GOTHIC?!",
@@ -3271,7 +3271,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["TackySuit"] = {
 		{
 			Text = "Do you want to buy the Tacky Suit for 120 Ember Shards?",
@@ -3289,7 +3289,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["LeafCrown"] = {
 		{
 			Text = "Do you want to buy the Leaf Crown for 30 Ember Shards?",
@@ -3307,7 +3307,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		}
 	},
-	
+
 	["BasicSpear"] = {
 		{
 			Text = "Do you want to buy the Basic Spear for 75 Ember Shards?",
@@ -3325,7 +3325,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["BasicSword"] = {
 		{
 			Text = "Buy basic sword for 20 ember shards?",
@@ -3343,7 +3343,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["BasicShield"] = {
 		{
 			Text = "Do you want to buy the Basic Shield for 50 Ember Shards?",
@@ -3361,7 +3361,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	["BasicFlintlock"] = {
 		{
 			Text = "Do you want to buy the Basic Flintlock for 50 Ember Shards?",
@@ -3379,8 +3379,8 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
-	
+
+
 	["Grim"] = {
 		{
 			Text = "Hey there, are you interested in buying some relics?",
@@ -3439,7 +3439,7 @@ NPCDialogue.Dialogues = {
 			},
 		},
 	},
-	
+
 	["SwordPedestal"] = {
 		{
 			Text = "It's an old sword pedestal, does not seem wieldable.",
@@ -3452,7 +3452,7 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
-	
+
 	-- finish cutscene in the gui and stuff later 
 	-- make logic for this if possible barbarian candidate
 	-- maybe make you need max health
@@ -3474,7 +3474,7 @@ NPCDialogue.Dialogues = {
 		},
 	},
 
-    ["RitualCircle"] = {
+	["RitualCircle"] = {
 		{
 			Text = "There is something drawn on the floor, touch it?",
 			Replies = {
@@ -3493,7 +3493,7 @@ NPCDialogue.Dialogues = {
 			Text = "...",
 			Next = nil
 		},
-        {
+		{
 			Text = "It begins to glow...",
 			Next = nil
 		},
@@ -3505,6 +3505,50 @@ NPCDialogue.Dialogues = {
 			Replies = {
 				{ Text = "Kingdom.", Next = 2 }, 
 				{ Text = "Loot.", Next = 3 }, 
+				{ Text = "You.", Next = 6 },  
+			}
+		},
+		{
+			Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+			Replies = {
+				{ Text = "Goddess.", Next = 6 }, 
+				{ Text = "Loot.", Next = 3 }, 
+			}
+		},
+		{
+			Text = "Do not worry, i have nothing but flattery for you adventuring in this place. However, the creatures created from my magical energy may attack you to protect it.",
+			Replies = {
+				{ Text = "Kingdom", Next = 2 },
+				{ Text = "You.", Next = 6 },  
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+		{
+			Text = "Have a wondefull day!",
+			Next = nil
+		},
+		{
+			Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+			Replies = {
+				{ Text = "You.", Next = 6 }, 
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+		{
+			Text = "So one of your reasons was to meet the reborn God of flames? Hah, how amusing! Not many venture inside this place, say, would you be interested in helping me a little? I usually do not need the help of godly souls, but perhaps it would be welcome this time. You should pass by the recently frozen part of my land, then we'll talk further!",
+			Replies = {
+				{ Text = "Accept.", Next = 6 }, 
+			}
+		},
+	},
+
+	["FlogesSigilQuest"] = {
+		{
+			Text = "Hello mortal!",
+			Replies = {
+				{ Text = "Kingdom.", Next = 2 }, 
+				{ Text = "Loot.", Next = 3 }, 
+				{ Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  -- wonder if thisl work
 			}
 		},
 		{
@@ -3522,8 +3566,8 @@ NPCDialogue.Dialogues = {
 				{ Text = "Goodbye.", Next = 4 }, 
 			}
 		},
-        {
-			Text = "Goodbye mortal!",
+		{
+			Text = "Have a wondefull day!",
 			Next = nil
 		},
 		{
@@ -3534,13 +3578,61 @@ NPCDialogue.Dialogues = {
 			}
 		},
 		{
-			Text = "So one of your reasons was to meet the reborn God of flames? Hah, how amusing! Not many venture inside this place, say, would you be interested in helping me a little? im currently in battle with someone rather strong, and id rather not let this last too long, if you can, you should pass by the newly frozen part of my land, then we'll talk further!",
+			Text = "If you truly mean to help me, i may bless you with my power, it will change your vessel a little, but dont worry, Aretim wont mind it. He respects the strong, and ill make you stronger!",
 			Replies = {
-				{ Text = "Accept.", Next = 6 }, 
+				{ Text = "Accept.", Next = 7 }, 
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+		{
+			Text = "...",
+			Next = nil
+		},
+	},
+
+	["FlogesSigilRace"] = {
+		{
+			Text = "Hello mortal!",
+			Replies = {
+				{ Text = "Kingdom.", Next = 2 }, 
+				{ Text = "Loot.", Next = 3 }, 
+				{ Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  
+			}
+		},
+		{
+			Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+			Replies = {
+				{ Text = "Goddess.", Next = 6 }, 
+				{ Text = "Loot.", Next = 3 }, 
+			}
+		},
+		{
+			Text = "Do not worry, i have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
+			Replies = {
+				{ Text = "Kingdom", Next = 2 },
+				{ Text = "You.", Next = 6 },  
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+		{
+			Text = "Have a wondefull day!",
+			Next = nil
+		},
+		{
+			Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+			Replies = {
+				{ Text = "You.", Next = 6 }, 
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+		{
+			Text = "I will be awaiting your presence at the frozen part of my land, but until then, go and show the world the true power of flames! ",
+			Replies = {
+				{ Text = "Goodbye.", Next = 4 }, 
 			}
 		},
 	},
-	
+
 	["Selden"] = {
 		{
 			Text = "These damned crystals...",
