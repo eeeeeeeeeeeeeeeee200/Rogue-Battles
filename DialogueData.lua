@@ -3498,6 +3498,48 @@ NPCDialogue.Dialogues = {
 			Next = nil
 		},
 	},
+
+	["FlogesSigil"] = {
+		{
+			Text = "Hello mortal! Exploring, are you? What is it you seek here?",
+			Replies = {
+				{ Text = "Kingdom.", Next = 2 }, 
+				{ Text = "Loot.", Next = 3 }, 
+			}
+		},
+		{
+			Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+			Replies = {
+				{ Text = "Goddess.", Next = 6 }, 
+				{ Text = "Loot.", Next = 3 }, 
+			}
+		},
+		{
+			Text = "Do not worry, i have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
+			Replies = {
+				{ Text = "Kingdom", Next = 2 },
+				{ Text = "You.", Next = 6 },  
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+        {
+			Text = "Goodbye mortal!",
+			Next = nil
+		},
+		{
+			Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+			Replies = {
+				{ Text = "You.", Next = 6 }, 
+				{ Text = "Goodbye.", Next = 4 }, 
+			}
+		},
+		{
+			Text = "So one of your reasons was to meet the reborn God of flames? Hah, how amusing! Not many venture inside this place, say, would you be interested in helping me a little? im currently in battle with someone rather strong, and id rather not let this last too long, if you can, you should pass by the newly frozen part of my land, then we'll talk further!",
+			Replies = {
+				{ Text = "Accept.", Next = 6 }, 
+			}
+		},
+	},
 	
 	["Selden"] = {
 		{

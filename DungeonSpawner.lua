@@ -204,7 +204,7 @@ local function setupHealer(room)
 						visualSystem.applyEffectVFX(plr.Character, "PinkFire")
 						task.spawn(function()
 							for i = 1, 3 do
-							task.wait(1)
+								task.wait(1)
 								slotData.Health += math.clamp(10, 0, slotData.MaxHealth - slotData.Health)
 								visualSystem.showDamageText(plr.Character, heal)
 							end
@@ -243,8 +243,8 @@ local specialRooms = { -- what rooms can be in each floor of the pillar
 local specialRoomSetups = { -- idk if ill need more than just the pivot yet so its a table
 	["extraChest"] = {pivot = Vector3.new(0,0,0), func = spawnChest, arg = "BasaltChest", noModel = true}, -- should be functional now
 	["weaponry"] = {pivot = Vector3.new(0,8,0)}, -- done
-	["healer"] = {pivot = Vector3.new(0,4.5,0), func = setupHealer}, -- wip
-	["sigil"] = {pivot = Vector3.new(0,0,0)}, -- wip
+	["healer"] = {pivot = Vector3.new(0,4.5,0), func = setupHealer}, -- pretty much done
+	["sigil"] = {pivot = Vector3.new(0,12,0)}, -- wip
 	["relic"] = {pivot = Vector3.new(0,0,0), func = spawnChest, arg = "BasaltRelicChest"}, -- needs diferent drops added
 	["puzzle"] = {pivot = Vector3.new(0,0,0)}, -- not done, rewards 2 or 3 better chests maybe idk but hard or maybe a perm buff for the pillar
 }
@@ -492,7 +492,8 @@ local function spawnDungeon(player, floor)
 			local setup = specialRoomSetups[pickedRoom]
 			local model = game.ServerStorage.Rooms[pickedRoom]:Clone()
 			if not setup.noModel then
-				model:PivotTo(room:GetPivot() + setup.pivot)
+				local target = (room:GetPivot() + setup.pivot).Position
+				model:PivotTo(CFrame.new(target) * model:GetPivot().Rotation)
 				model.Parent = room
 			end
 			if setup and setup.func then setup.func(room, floor, setup.arg) end -- runs the function named the same as in the setup
