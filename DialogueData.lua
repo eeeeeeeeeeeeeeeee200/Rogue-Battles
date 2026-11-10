@@ -3499,139 +3499,191 @@ NPCDialogue.Dialogues = {
 		},
 	},
 
-	["FlogesSigil"] = {
-		{
-			Text = "Hello mortal! Exploring, are you? What is it you seek here?",
-			Replies = {
-				{ Text = "Kingdom.", Next = 2 }, 
-				{ Text = "Loot.", Next = 3 }, 
-				{ Text = "You.", Next = 6 },  
-			}
-		},
-		{
-			Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
-			Replies = {
-				{ Text = "Goddess.", Next = 6 }, 
-				{ Text = "Loot.", Next = 3 }, 
-			}
-		},
-		{
-			Text = "Do not worry, i have nothing but flattery for you adventuring in this place. However, the creatures created from my magical energy may attack you to protect it.",
-			Replies = {
-				{ Text = "Kingdom", Next = 2 },
-				{ Text = "You.", Next = 6 },  
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "Have a wondefull day!",
-			Next = nil
-		},
-		{
-			Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
-			Replies = {
-				{ Text = "You.", Next = 6 }, 
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "So one of your reasons was to meet the reborn God of flames? Hah, how amusing! Not many venture inside this place, say, would you be interested in helping me a little? I usually do not need the help of godly souls, but perhaps it would be welcome this time. You should pass by the recently frozen part of my land, then we'll talk further!",
-			Replies = {
-				{ Text = "Accept.", Next = 6 }, 
-			}
-		},
-	},
+["FlogesSigil"] = {
+        {
+            Text = "Hello mortal! Exploring, are you? What is it you seek here?",
+            Replies = {
+                { Text = "Kingdom.", Next = 2 }, 
+                { Text = "Loot.", Next = 3 }, 
+                { Text = "You.", Next = 6 },  
+            }
+        },
+        {
+            Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+            Replies = {
+                { Text = "Goddess.", Next = 6 }, 
+                { Text = "Loot.", Next = 3 }, 
+            }
+        },
+        {
+            Text = "Do not worry, I have nothing but flattery for you adventuring in this place. However, the creatures created from my magical energy may attack you to protect it.",
+            Replies = {
+                { Text = "Kingdom", Next = 2 },
+                { Text = "You.", Next = 6 },  
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "Have a wonderful day!",
+            Next = nil
+        },
+        {
+            Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+            Replies = {
+                { Text = "You.", Next = 6 }, 
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "So one of your reasons was to meet the reborn God of flames? Hah, how amusing! Not many venture inside this place, say, would you be interested in helping me a little? I usually do not need the help of godly souls, but perhaps it would be welcome this time. You should pass by the recently frozen part of my land, then we'll talk further!",
+            Replies = {
+                { Text = "Accept.", Next = 7 }, 
+            }
+        },
+        {
+            Text = "...",
+            Next = nil
+        },
+    },
 
-	["FlogesSigilQuest"] = {
-		{
-			Text = "Hello mortal!",
-			Replies = {
-				{ Text = "Kingdom.", Next = 2 }, 
-				{ Text = "Loot.", Next = 3 }, 
-				{ Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  -- wonder if thisl work
-			}
-		},
-		{
-			Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
-			Replies = {
-				{ Text = "Goddess.", Next = 6 }, 
-				{ Text = "Loot.", Next = 3 }, 
-			}
-		},
-		{
-			Text = "Do not worry, i have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
-			Replies = {
-				{ Text = "Kingdom", Next = 2 },
-				{ Text = "You.", Next = 6 },  
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "Have a wondefull day!",
-			Next = nil
-		},
-		{
-			Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
-			Replies = {
-				{ Text = "You.", Next = 6 }, 
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "If you truly mean to help me, i may bless you with my power, it will change your vessel a little, but dont worry, Aretim wont mind it. He respects the strong, and ill make you stronger!",
-			Replies = {
-				{ Text = "Accept.", Next = 7 }, 
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "...",
-			Next = nil
-		},
-	},
+    ["FlogesSigilQuest"] = {
+        {
+            Text = "Hello mortal!",
+            Replies = {
+                { Text = "Kingdom.", Next = 2 }, 
+                { Text = "Loot.", Next = 3 }, 
+                { Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  -- wonder if thisl work
+            }
+        },
+        {
+            Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+            Replies = {
+                { Text = "Goddess.", Next = 6 }, 
+                { Text = "Loot.", Next = 3 }, 
+            }
+        },
+        {
+            Text = "Do not worry, I have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
+            Replies = {
+                { Text = "Kingdom", Next = 2 },
+                { Text = "You.", Next = 6 },  
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "Have a wonderful day!",
+            Next = nil
+        },
+        {
+            Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+            Replies = {
+                { Text = "You.", Next = 6 }, 
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "If you truly mean to help me, I may bless you with my power. It will change your vessel a little, but don't worry, Aretim won't mind it. He respects the strong, and I'll make you stronger!",
+            Replies = {
+                { Text = "Accept.", Next = 7 }, 
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "...",
+            Next = nil
+        },
+    },
 
-	["FlogesSigilRace"] = {
-		{
-			Text = "Hello mortal!",
-			Replies = {
-				{ Text = "Kingdom.", Next = 2 }, 
-				{ Text = "Loot.", Next = 3 }, 
-				{ Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  
-			}
-		},
-		{
-			Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
-			Replies = {
-				{ Text = "Goddess.", Next = 6 }, 
-				{ Text = "Loot.", Next = 3 }, 
-			}
-		},
-		{
-			Text = "Do not worry, i have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
-			Replies = {
-				{ Text = "Kingdom", Next = 2 },
-				{ Text = "You.", Next = 6 },  
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "Have a wondefull day!",
-			Next = nil
-		},
-		{
-			Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
-			Replies = {
-				{ Text = "You.", Next = 6 }, 
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-		{
-			Text = "I will be awaiting your presence at the frozen part of my land, but until then, go and show the world the true power of flames! ",
-			Replies = {
-				{ Text = "Goodbye.", Next = 4 }, 
-			}
-		},
-	},
+    ["FlogesSigilWrongRace"] = {
+        {
+            Text = "Hello mortal!",
+            Replies = {
+                { Text = "Kingdom.", Next = 2 }, 
+                { Text = "Loot.", Next = 3 }, 
+                { Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  -- wonder if thisl work
+            }
+        },
+        {
+            Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+            Replies = {
+                { Text = "Goddess.", Next = 6 }, 
+                { Text = "Loot.", Next = 3 }, 
+            }
+        },
+        {
+            Text = "Do not worry, I have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
+            Replies = {
+                { Text = "Kingdom", Next = 2 },
+                { Text = "You.", Next = 6 },  
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "Have a wonderful day!",
+            Next = nil
+        },
+        {
+            Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+            Replies = {
+                { Text = "You.", Next = 6 }, 
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "I am sorry, but your current vessel cannot sustain my power. I still wish for you to aid me, however; meet me at the frozen part of my land.",
+            Replies = {
+                { Text = "Accept.", Next = 7 }, 
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "...",
+            Next = nil
+        },
+    },
+
+    ["FlogesSigilRace"] = {
+        {
+            Text = "Hello mortal!",
+            Replies = {
+                { Text = "Kingdom.", Next = 2 }, 
+                { Text = "Loot.", Next = 3 }, 
+                { Text = "<font color='#FF0000'>Flames.</font>", Next = 6 },  
+            }
+        },
+        {
+            Text = "Ah, the kingdom! There used to be much trade going there through this place, how sad that we no longer hold those relations... Why do you intend to go up there, however?",
+            Replies = {
+                { Text = "Goddess.", Next = 6 }, 
+                { Text = "Loot.", Next = 3 }, 
+            }
+        },
+        {
+            Text = "Do not worry, I have no intention of killing you for adventuring and looting here. However, the creatures created from my magical energy may protect the place.",
+            Replies = {
+                { Text = "Kingdom", Next = 2 },
+                { Text = "You.", Next = 6 },  
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "Have a wonderful day!",
+            Next = nil
+        },
+        {
+            Text = "Oh, you want to meet your maker? How cute, well, the last teleportation circle in this tower will get you to an island pretty high up, you can probably make it to the kingdom if you're skilled enough.",
+            Replies = {
+                { Text = "You.", Next = 6 }, 
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+        {
+            Text = "I will be awaiting your presence at the frozen part of my land, but until then, go and show the world the true power of flames!",
+            Replies = {
+                { Text = "Goodbye.", Next = 4 }, 
+            }
+        },
+    },
 
 	["Selden"] = {
 		{

@@ -71,6 +71,7 @@ subraceSystem.ApplySubrace =  function (slotData, subrace, player)
 	end
 	slotData["SubRace"] = subrace
 	statSystem.UpdateStats(player)
+	visualSystem.ApplyAppearance(player.Character, slotData)
 end
 
 

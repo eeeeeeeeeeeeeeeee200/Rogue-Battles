@@ -259,7 +259,6 @@ local function displayStep(stepNumber)
 		elseif currentDialogueId == "MotherTreeWizardMekolkal" and stepNumber == 17 then
 			DialogueEvent:FireServer("Mekolkal_Purify")
 			
-			
 		elseif currentDialogueId == "MotherTreeMekolkal" and stepNumber == 15 then
 			DialogueEvent:FireServer("Mekolkal_Purify")
 			
@@ -269,6 +268,11 @@ local function displayStep(stepNumber)
         elseif currentDialogueId == "RitualCircle" and stepNumber == 4 then
             DialogueEvent:FireServer("RitualCircle")
 		
+		elseif currentDialogueId == "FlogesSigil" and stepNumber == 7 then
+			DialogueEvent:FireServer("FlogesQuest")
+		
+		elseif currentDialogueId == "FlogesSigilQuest" and stepNumber == 7 then
+			DialogueEvent:FireServer("FlogesSubrace")
 
 		-- Mendi n spirit LOGIC
 		elseif currentDialogueId == "Mendi" and stepNumber == 2 then

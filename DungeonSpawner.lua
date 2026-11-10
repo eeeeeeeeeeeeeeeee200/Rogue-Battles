@@ -184,7 +184,7 @@ end
 local healPerRace = { -- negative is heal positive is damage
 	["None"] = -10,
 	["Demon"] = 10,
-	["Fire"] = -20, -- rename the subrace i forgot what i was gonna call it
+	["Ignited"] = -20, -- rename the subrace i forgot what i was gonna call it
 }
 
 local function setupHealer(room)
