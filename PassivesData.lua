@@ -52,10 +52,12 @@ passivesData.Regeneration = {type = "onTurn", passiveFunction = function(bearer)
 	damageEvent:Fire(bearer.Instance, -3)
 end}
 
-passivesData.FireProof = {type = "passive", passiveFunction = function(bearer)
-	-- just so it exists idk
+passivesData.FireProof = {type = "passive", passiveFunction = function(bearer) -- fire effect checks for this before doing dmg(not the same as fire resistance %)
 end,}
 
+passivesData.FireResolve = {type = "OnDeath", passiveFunction = function(bearer)
+	
+end}
 passivesData.DemonicRegeneration = {type = "onTurn", passiveFunction = function(bearer)
 	damageEvent:Fire(bearer.Instance, -2)
 end,}
@@ -106,13 +108,15 @@ passivesData.WaterAffinity = {type = "onTurn", passiveFunction = function(bearer
 	end
 end}
 
-passivesData.FireAffinity = {type = "onTurn", passiveFunction = function(bearer)
+passivesData.FireAffinity = {type = "onTurn", passiveFunction = function(bearer) -- buffed for the subrace
 	local bearerBattleData = bearer.InBattleData
 
+	if math.random(1.2) == 2 then effectBindable:Invoke(bearer.Instance, "addEffect", {name = "Fire", duration = 2})
 	local fireEffect = false
 	for _, effect in ipairs(bearerBattleData.Effects) do
 		if effect.name == "Fire" then fireEffect = effect break end
 	end
+
 	if fireEffect then
 		local found = effectBindable:Invoke(bearer.Instance, "findEffect", "FireAffinity")
 

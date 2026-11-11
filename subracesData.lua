@@ -1,6 +1,6 @@
 local subracesData = {}
 
-subracesData.Races = {"None", "Demon", "Archdemon"} -- mostly just for clarity checks
+subracesData.Races = {"None", "Demon", "Archdemon", "Ignited"} -- mostly just for clarity checks
 
 subracesData.None = {
 	Stats = {Defence = 0, Damage = 0, Speed = 0},
@@ -48,6 +48,18 @@ subracesData.ArchdemonSoul = {
 		["The Soul"] = {type = "OtherPassive"},
 		["Demonic Regeneration"] = {type = "CombatPassive"},
 		["Light Weakness"] = {type = "ElemRes", element = "Light", resistance = 0.1},
+	},
+}
+
+subracesData.Ignited = {
+	Stats = {Defence = 0, Damage = 1, Speed = 0},
+	Attacks = {"Burning Soul"},
+	Passives = {
+		["Ignited Appearence"] = {type = "OtherPassive"},
+		["FireProof"] = {type = "CombatPassive"}, -- imune to fire Dot
+		["FireAffinity"] = {type = "CombatPassive"},
+		["FireAttacks"]  = {type = "CombatPassive"}, -- proc fireon attacks
+		["Fire Resistance"] = {type = "ElemRes", element = "Fire", resistance = 1.7}, -- i think this should work like 70% less dmg
 	},
 }
 

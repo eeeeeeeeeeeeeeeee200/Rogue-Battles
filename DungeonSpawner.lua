@@ -184,7 +184,7 @@ end
 local healPerRace = { -- negative is heal positive is damage
 	["None"] = -10,
 	["Demon"] = 10,
-	["Ignited"] = -20, -- rename the subrace i forgot what i was gonna call it
+	["Ignited"] = -20, -- called it ignited
 }
 
 local function setupHealer(room)
@@ -416,7 +416,7 @@ local function spawnDungeon(player, floor)
 		minimumChestRooms = math.round(minimumChestRooms)
 	end
 	-- uhmm a number too low would break things so just incase
-	if cells <= 10 then cells = 10 end
+	if cells <= 9 then cells = 10 end
 	-- not letting yall somehow spawn 2 billion rooms
 	if cells >= 1000 then cells = 10 end
 
@@ -491,7 +491,7 @@ local function spawnDungeon(player, floor)
 			local pickedRoom = pickSpecialRoom(floor)
 			local setup = specialRoomSetups[pickedRoom]
 			local model = game.ServerStorage.Rooms[pickedRoom]:Clone()
-			if not setup.noModel then
+			if not setup.noModel then -- use no model if you dont want the model to spawn idk
 				local target = (room:GetPivot() + setup.pivot).Position
 				model:PivotTo(CFrame.new(target) * model:GetPivot().Rotation)
 				model.Parent = room
