@@ -56,7 +56,7 @@ passivesData.FireProof = {type = "passive", passiveFunction = function(bearer) -
 end,}
 
 passivesData.FireResolve = {type = "OnDeath", passiveFunction = function(bearer)
-	
+
 end}
 passivesData.DemonicRegeneration = {type = "onTurn", passiveFunction = function(bearer)
 	damageEvent:Fire(bearer.Instance, -2)
@@ -111,19 +111,19 @@ end}
 passivesData.FireAffinity = {type = "onTurn", passiveFunction = function(bearer) -- buffed for the subrace
 	local bearerBattleData = bearer.InBattleData
 
-	if math.random(1.2) == 2 then effectBindable:Invoke(bearer.Instance, "addEffect", {name = "Fire", duration = 2})
-	local fireEffect = false
-	for _, effect in ipairs(bearerBattleData.Effects) do
-		if effect.name == "Fire" then fireEffect = effect break end
-	end
+	if math.random(1.2) == 2 then effectBindable:Invoke(bearer.Instance, "addEffect", {name = "Fire", duration = 2}) end
+		local fireEffect = false
+		for _, effect in ipairs(bearerBattleData.Effects) do
+			if effect.name == "Fire" then fireEffect = effect break end
+		end
 
-	if fireEffect then
-		local found = effectBindable:Invoke(bearer.Instance, "findEffect", "FireAffinity")
+		if fireEffect then
+			local found = effectBindable:Invoke(bearer.Instance, "findEffect", "FireAffinity")
 
-		if found then found.duration = fireEffect.duration return end
-		effectBindable:Invoke(bearer.Instance, "addEffect", {name = "FireAffinity", duration = fireEffect.duration})
-	end
-end}
+			if found then found.duration = fireEffect.duration return end
+			effectBindable:Invoke(bearer.Instance, "addEffect", {name = "FireAffinity", duration = fireEffect.duration})
+		end
+	end}
 
 passivesData.Energetic = {type = "onBattleStart", passiveFunction = function(bearer)
 	local bearerStats = require(bearer.Instance.InstanceData)

@@ -469,22 +469,27 @@ local function spawnDungeon(player, floor)
 		-- battle setup
 		if typeOfRoom == "FightRoom" then
 			setupBattle(room, false)
-		elseif typeOfRoom == "StairsRoom" then
-			local obelisk = game.ServerStorage.Rooms.Obeliskblue:Clone()
-			obelisk:PivotTo(room:GetPivot() + Vector3.new(0,3,0))
-			obelisk.ClickDetector.MouseClick:Connect(function(clicker)
-				spawnDungeon(clicker, floor + 1)
+		elseif typeOfRoom == "StairsRoom" then -- more like teleporter now
+			local obelisk = game.ServerStorage.Rooms.ObeliskBlue:Clone()
+			obelisk:PivotTo(room:GetPivot() + Vector3.new(0,1,0))
+			obelisk.Touched:Connect(function(hit)
+				local plr = game.Players:GetPlayerFromCharacter(hit.Parent)
+				if plr then
+					spawnDungeon(plr, floor + 1)
+				end
 			end)
 			obelisk.Parent = room
-
 		elseif typeOfRoom == "ChestRoom" then
 			spawnChest(room, floor, "BasaltChest")
 		elseif typeOfRoom == "BossRoom" then
 			setupBattle(room, true)
-			local obelisk = game.ServerStorage.Rooms.Obeliskblue:Clone()
+			local obelisk = game.ServerStorage.Rooms.ObeliskBlue:Clone()
 			obelisk:PivotTo(room:GetPivot() + Vector3.new(0,3,0))
-			obelisk.ClickDetector.MouseClick:Connect(function(clicker)
-				spawnDungeon(clicker, floor + 1)
+			obelisk.Touched:Connect(function(hit)
+				local plr = game.Players:GetPlayerFromCharacter(hit.Parent)
+				if plr then
+					spawnDungeon(plr, floor + 1)
+				end
 			end)
 			obelisk.Parent = room
 		elseif typeOfRoom == "SpecialRoom" then -- spawn special room models

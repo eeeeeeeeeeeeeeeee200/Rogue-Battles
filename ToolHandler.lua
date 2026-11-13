@@ -263,21 +263,8 @@ event.OnServerEvent:Connect(function(player, tool, arg3)
 		if arg3 == 1 then
 			for i, v in pairs(VFXAssets:FindFirstChild("boltForm"):GetChildren()) do
 				local p = v:Clone()
-				local p2 = v:Clone()
 				p.Parent = player.Character:FindFirstChild("HumanoidRootPart")
 				p.Name = "BoltFormParticle"
-				p2.Parent = player.Character:FindFirstChild("HumanoidRootPart")
-				p2.Name = "BoltFormParticle"
-				local leg = player.Character:FindFirstChild("Left Leg").LeftFootAttachment
-				local arm = player.Character:FindFirstChild("Left Arm").LeftShoulderAttachment
-				if i == 2 then 
-					leg = player.Character:FindFirstChild("Right Leg").RightFootAttachment
-					arm = player.Character:FindFirstChild("Right Arm").RightShoulderAttachment
-				end
-				p.Attachment0 = player.Character:FindFirstChild("HumanoidRootPart").RootAttachment
-				p.Attachment1 = arm
-				p2.Attachment0 = player.Character:FindFirstChild("HumanoidRootPart").RootAttachment
-				p2.Attachment1 = arm
 			end
 		elseif arg3 == 0 then
 			for i, v in pairs(player.Character.HumanoidRootPart:GetChildren()) do
