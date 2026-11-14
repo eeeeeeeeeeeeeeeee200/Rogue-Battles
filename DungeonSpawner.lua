@@ -1,3 +1,4 @@
+if not game.ServerStorage:FindFirstChild("Rooms") then return end
 local cells = 100
 --number of rooms^
 -- dont change this
@@ -18,7 +19,8 @@ local inventorySystem = require(rS.Systems.InvSystem)
 local debris = game:GetService("Debris")
 local ShardTemplate = rS:WaitForChild("Templates"):WaitForChild("EmberShardPickup")
 local visualSystem = require(game.ReplicatedStorage:WaitForChild("Systems"):WaitForChild("VisualSystem"))
-
+local itemsData = require(game.ReplicatedStorage:WaitForChild("Data"):WaitForChild("ItemsData"))
+local chestData = require(game.ReplicatedStorage:WaitForChild("Data"):WaitForChild("ChestData"))
 
 -- bindable event -- dude rooms sizes are so bad to do uhh
 local event = game.ReplicatedStorage.Events.DungeonSpawnerEvent
@@ -103,84 +105,9 @@ end
 
 
 local function spawnChest(room, floor, chestName)
-	local chest = game.ServerStorage.Rooms.chest:Clone()
-	chest:PivotTo(room.RoomSize:GetPivot() - Vector3.new(0,0.5,0))
-	chest.Parent = room
-	local droppedItem = require(game.ReplicatedStorage.Data.ChestData).pickItem(chestName)
-	if not chest:FindFirstChild("ClickDetector") then local c = Instance.new("ClickDetector") c.Parent = chest end
-	chest.ClickDetector.MouseClick:Connect(function(clicker)
-		task.wait(1)
-		local templateName = string.lower(string.gsub(droppedItem, " ", ""))
-		local template = game.ReplicatedStorage.Templates:FindFirstChild(templateName)
-		if not template then 
-			warn("Template " .. templateName .. " not found")
-			return 
-		end
-
-		local drop = template:Clone()
-
-
-		local rotation = CFrame.Angles(0, 0, math.rad(-90))
-		local spawnCFrame = chest:GetPivot()
-
-		drop:PivotTo(spawnCFrame * CFrame.new(-1,0,0))
-		drop.Parent = workspace
-
-		local hitbox = Instance.new("Part")
-		hitbox.Name = "ClickHitbox"
-		hitbox.Transparency = 1
-		hitbox.CanCollide = false
-		hitbox.Massless = true
-
-		local skip = false
-
-		if drop:IsA("Model") then
-			local orientation, size = drop:GetBoundingBox()
-			hitbox.Size = size
-			hitbox.CFrame = orientation
-		else
-			hitbox.Size = drop.Size
-			hitbox.CFrame = drop.CFrame
-			skip = true
-		end
-		if skip	== false then
-			local weld = Instance.new("WeldConstraint")
-			weld.Part0 = hitbox
-			weld.Part1 = drop:IsA("Model") and (drop.PrimaryPart or drop:FindFirstChildWhichIsA("BasePart")) or drop
-			weld.Parent = hitbox
-			hitbox.Parent = drop
-		end
-
-		local cd = Instance.new("ClickDetector")
-		cd.MaxActivationDistance = 10
-		if skip == true then
-			cd.Parent = drop
-		else
-			cd.Parent = hitbox
-		end
-
-		local clicked = false
-		cd.MouseClick:Connect(function(clickingPlayer)
-			if clicked then return end
-
-
-
-			clicked = true
-
-			local added = inventorySystem.AddItem(clickingPlayer, droppedItem, 1)
-			if added then
-				debris:AddItem(drop, 0)
-			end
-		end)
-
-		debris:AddItem(drop, 120) 
-		if math.random(1,2) == 2 then
-			spawnEmberShards(spawnCFrame, floor)
-		end
-		chest:Destroy()
-	end)
+	chestData.SpawnChest(chestName, room.RoomSize:GetPivot() - Vector3.new(0,0.5,0), room) -- pass name, pivot and parent
+	spawnEmberShards(room.RoomSize:GetPivot() - Vector3.new(0,0.5,0), floor)
 end
-
 local healPerRace = { -- negative is heal positive is damage
 	["None"] = -10,
 	["Demon"] = 10,

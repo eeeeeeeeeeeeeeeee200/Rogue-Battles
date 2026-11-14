@@ -1,4 +1,5 @@
 local chestData = {}
+local itemsData = game.ReplicatedStorage.Data.ItemsData
 
 local idToItem = {
 	[1] = "Onyx",
@@ -27,7 +28,7 @@ chestData.Chests = {
 	},
 }
 
-chestData.pickItem = function(chest)
+function chestData.pickItem = function(chest)
 	local chestTable = chestData.Chests[chest]
 	local rng = math.random(1,100)
 	local chestDrops = chestTable.Drops
@@ -38,6 +39,18 @@ chestData.pickItem = function(chest)
 			return idToItem[item]
 		end
 	end
+end
+
+function chestData.SpawnChest = function(chest, cFrame, father)
+	local item = chestData.PickItem(chest)
+	local chest = game.ReplicatedStorage.Templates:FindFirstChild(chest):Clone()
+	chest:PivotTo(cFrame)
+	chest.Parent = father
+	if not chest:FindFirstChild("ClickDetector") then local c = Instance.new("ClickDetector") c.Parent = chest end
+	chest.ClickDetector.MouseClick:Connect(function(clicker)
+		task.wait(1)
+		itemsData.SpawnItemDrop(item)
+	end)
 end
 
 return chestData
